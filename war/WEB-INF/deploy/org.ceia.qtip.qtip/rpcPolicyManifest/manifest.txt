@@ -1,0 +1,2 @@
+# Module org.ceia.qtip.qtip
+# RPC service class, partial path of RPC policy file
