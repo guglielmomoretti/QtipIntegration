@@ -1,29 +1,33 @@
 package org.ceia.qtip.shared;
 
-public class QtipTooltipPosition {
+public enum QtipTooltipPosition {
 
-	public static final String BOTTOM_LEFT = "bottom left";
+	BOTTOM_LEFT("bottom left"),
+	BOTTOM_CENTER("bottom center"),
+	BOTTOM_RIGHT("bottom right"),
+	TOP_LEFT("top left"),
+	TOP_CENTER("top center"),
+	TOP_RIGHT("top right"),
+	LEFT_TOP("left top"),
+	LEFT_CENTER("left center"),
+	LEFT_BOTTOM("left bottom"),
+	RIGHT_TOP("right top"),
+	RIGHT_CENTER("right center"),
+	RIGHT_BOTTOM("left bottom");
+	
+	private String nativePosition;
+	
+	private QtipTooltipPosition(String position) {
+		// TODO Auto-generated constructor stub
+		this.setNativePosition(position);
+	}
 
-	public static final String BOTTOM_CENTER = "bottom center";
+	public String getNativePosition() {
+		return nativePosition;
+	}
 
-	public static final String BOTTOM_RIGHT = "bottom right";
-
-	public static final String TOP_LEFT = "top left";
-
-	public static final String TOP_CENTER = "top center";
-
-	public static final String TOP_RIGHT = "top right";
-
-	public static final String LEFT_TOP = "left top";
-
-	public static final String LEFT_CENTER = "left center";
-
-	public static final String LEFT_BOTTOM = "left bottom";
-
-	public static final String RIGHT_TOP = "right top";
-
-	public static final String RIGHT_CENTER = "right center";
-
-	public static final String RIGHT_BOTTOM = "left bottom";
+	private void setNativePosition(String nativePosition) {
+		this.nativePosition = nativePosition;
+	}
 
 }

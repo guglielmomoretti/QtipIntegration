@@ -1,17 +1,20 @@
 package org.ceia.qtip.client;
 
-import org.ceia.qtip.client.json.QtipUtils;
-import org.ceia.qtip.client.json.Qtip;
-import org.ceia.qtip.client.json.QtipAdjust;
-import org.ceia.qtip.client.json.QtipContent;
-import org.ceia.qtip.client.json.QtipEvents;
-import org.ceia.qtip.client.json.QtipHide;
-import org.ceia.qtip.client.json.QtipPosition;
-import org.ceia.qtip.client.json.QtipShow;
-import org.ceia.qtip.client.json.QtipTitle;
+import org.ceia.qtip.client.components.JsQtipAdjust;
+import org.ceia.qtip.client.components.JsQtipContainer;
+import org.ceia.qtip.client.components.JsQtipElement;
+import org.ceia.qtip.client.components.JsQtipContent;
+import org.ceia.qtip.client.components.JsQtipEvents;
+import org.ceia.qtip.client.components.JsQtipHide;
+import org.ceia.qtip.client.components.JsQtipPosition;
+import org.ceia.qtip.client.components.JsQtipShow;
+import org.ceia.qtip.client.components.JsQtipStyle;
+import org.ceia.qtip.client.components.JsQtipTitle;
+import org.ceia.qtip.client.components.QtipUtils;
+import org.ceia.qtip.shared.QtipStandardStyles;
 import org.ceia.qtip.shared.QtipEvent;
 import org.ceia.qtip.shared.QtipTooltipPosition;
-import org.ceia.qtip.shared.QtipVisibilityEventList;
+import org.ceia.qtip.shared.QtipBindEvents;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
@@ -43,23 +46,32 @@ public class QtipWidget {
 			@Override
 			public void execute() {
 				// TODO Auto-generated method stub
-				Qtip qtip = QtipUtils.createObject(Qtip.class);
-				QtipContent content = QtipUtils.createObject(QtipContent.class);
-				QtipTitle title = QtipUtils.createObject(QtipTitle.class);
-				QtipPosition position = QtipUtils.createObject(QtipPosition.class);
-				QtipAdjust adjust = QtipUtils.createObject(QtipAdjust.class);
-				QtipEvents events = QtipUtils.createObject(QtipEvents.class);
-				QtipShow show = QtipUtils.createObject(QtipShow.class);
-				QtipHide hide = QtipUtils.createObject(QtipHide.class);
-				 
-				JsArrayString stringArray = (JsArrayString)JavaScriptObject.createArray();
-				stringArray.push(QtipVisibilityEventList.CLICK);
+				JsQtipContainer container = new JsQtipContainer();
+				JsQtipElement qtip = QtipUtils.createObject(JsQtipElement.class);
+				JsQtipContent content = QtipUtils.createObject(JsQtipContent.class);
+				JsQtipTitle title = QtipUtils.createObject(JsQtipTitle.class);
+				JsQtipPosition position = QtipUtils.createObject(JsQtipPosition.class);
+				JsQtipAdjust adjust = QtipUtils.createObject(JsQtipAdjust.class);
+				JsQtipEvents events = QtipUtils.createObject(JsQtipEvents.class);
+				JsQtipShow show = QtipUtils.createObject(JsQtipShow.class);
+				JsQtipHide hide = QtipUtils.createObject(JsQtipHide.class);
+				JsQtipStyle style = QtipUtils.createObject(JsQtipStyle.class);
 				
+				JsArrayString stringArray = (JsArrayString)JavaScriptObject.createArray();
+				stringArray.push(QtipBindEvents.CLICK);
+				
+				JsArrayString styleArray = (JsArrayString)JavaScriptObject.createArray();
+				styleArray.push(QtipStandardStyles.QTIP_BLUE);
+				
+				
+				style.setClasses(styleArray);
+				qtip.setStyle(style);
 				qtip.setPosition(position);
 				
 				show.setTarget("#ref");
 				show.setEvent(stringArray);
-				events.initEvents();
+				show.setShowOnDocumentReady(true);
+				events.initEvents(container);
 				qtip.setEvents(events);
 				qtip.setContent(content);
 
@@ -67,7 +79,7 @@ public class QtipWidget {
 				content.setContent("Ciao ciao ciao ciao ");
 				title.setCaption("Title");
 				title.setButtonText("Close");
-				content.setQtipTitle(title);
+				//content.setQtipTitle(title);
 				position.setAnchor(QtipTooltipPosition.LEFT_CENTER);
 				position.setAnchorPosition(QtipTooltipPosition.RIGHT_CENTER);
 				position.setShowRelativeToMouse(false);
