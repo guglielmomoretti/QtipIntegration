@@ -10,6 +10,12 @@ public class QtipUtils {
 		return (T) JavaScriptObject.createObject().cast();
 	}
 
+
+	@SuppressWarnings("unchecked")
+	public static <T> T createArray(Class<T> object) {
+		return (T) JavaScriptObject.createArray().cast();
+	}
+
 	public static final native boolean isObjectEmpty(JavaScriptObject obj) /*-{
 		var GWT_ID = "__gwt_ObjectId";
 		var foundGwtID = false;

@@ -4,36 +4,39 @@ import org.ceia.qtip.shared.QtipBindEvents;
 
 public class QtipCommonShowHideClass {
 
-	private String target;
-	private QtipBindEvents[] events;
-	private int showDelay;
+    public static final int DEFAULT_QTIP_SHOW_DELAY = 140;
+    public static final int DEFAULT_QTIP_HIDE_DELAY = 0;
 
-	public QtipCommonShowHideClass() {
-		// TODO Auto-generated constructor stub
-	}
+    private String target;
+    private QtipBindEvents[] events;
+    private int delay = DEFAULT_QTIP_HIDE_DELAY;
 
-	public String getTarget() {
-		return target;
-	}
+    public QtipCommonShowHideClass() {
+	// TODO Auto-generated constructor stub
+    }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+    public String getTarget() {
+	return target;
+    }
 
-	public QtipBindEvents[] getEvents() {
-		return events;
-	}
+    public void setTarget(String target) {
+	this.target = target;
+    }
 
-	public void setEvents(QtipBindEvents[] events) {
-		this.events = events;
-	}
+    public QtipBindEvents[] getEvents() {
+	return events;
+    }
 
-	public int getShowDelay() {
-		return showDelay;
-	}
+    public void setEvents(QtipBindEvents... events) {
+	this.events = events;
+    }
 
-	public void setShowDelay(int showDelay) {
-		this.showDelay = showDelay;
-	}
+    public int getDelay() {
+	return delay;
+    }
+
+    public void setDelay(int delay) {
+	this.delay = delay;
+    }
 
 }

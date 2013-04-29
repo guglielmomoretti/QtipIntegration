@@ -8,11 +8,11 @@ public class JsQtipPosition extends JavaScriptObject {
 		// TODO Auto-generated constructor stub
 	}
 
-	public final native void setAnchor(String anchor) /*-{
+	public final native void setTipAnchor(String anchor) /*-{
 		this.my = anchor;
 	}-*/;
 
-	public final native void setAnchorPosition(String position) /*-{
+	public final native void setComponentAnchor(String position) /*-{
 		this.at = position;
 	}-*/;
 
